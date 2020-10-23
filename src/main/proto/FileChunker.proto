@@ -1,0 +1,17 @@
+syntax = "proto3";
+package file;
+option java_multiple_files = true;
+option java_package = "com.demo.grpc.filechunker";
+option java_outer_classname = "FileChunker";
+service Chunker {
+  rpc Chunker(ChunkRequest) returns (stream ChunkResponse) {}
+}
+
+message ChunkRequest{
+  string fileName = 1;
+}
+
+message ChunkResponse {
+  bytes chunk = 1;
+  int32 batchid = 2;
+}
